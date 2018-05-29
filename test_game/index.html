@@ -1,0 +1,139 @@
+	<!DOCTYPE html>
+<html lang="en">
+    <head>
+	
+	<script type="text/javascript">
+ 
+	
+	function changeImage(image)
+	{
+	if(image.parentElement.status=='deadone'){
+	
+	image.src='liveone.jpg';
+	image.parentElement.status = 'liveone';
+	}else{
+	
+	image.src='deadone.jpg';
+	image.parentElement.status = 'deadone';
+	}
+
+	}
+	
+	function liveOrDie(){
+	
+	
+	var kill = [];
+	var keep_alive= [];
+	var make_alive= [];
+	var dead_ones =[];
+	var live_ones= [];
+	
+	
+	
+
+	var live_neighbors = 0;
+	var main = document.getElementById("mainDiv");
+	var allCreatures = main.children;
+		for(var i = 0; i < allCreatures.length; i++) {
+		live_neighbors = 0;
+		var thisIsAlive = false;
+		var the_row = parseInt(allCreatures[i].getAttribute("row"));
+		var the_col = parseInt(allCreatures[i].getAttribute("coll"));
+		if(allCreatures[i].status == 'liveone') {
+		thisIsAlive = true;
+		}
+		
+				for(var i2 = 0; i2 < allCreatures.length; i2++) {
+					if(allCreatures[i2].status == 'liveone' && allCreatures[i2] != allCreatures[i] ){
+				var row = parseInt(allCreatures[i2].getAttribute("row"));
+				var col = parseInt(allCreatures[i2].getAttribute("coll"));
+						if((row == (the_row + 1 )|| row == (the_row - 1) || row == (the_row))  && ( col == the_col  + 1 || col  ==  (the_col - 1)|| col  ==  (the_col))){
+						++ live_neighbors;
+						}
+
+					}
+	
+				}
+			
+			
+				if(thisIsAlive && (live_neighbors < 2 || live_neighbors > 3)){
+						kill.push(allCreatures[i]);
+					
+				}else if(thisIsAlive && (live_neighbors == 2 || live_neighbors == 3)){
+						keep_alive.push(allCreatures[i]);
+					
+				}else if(!thisIsAlive && (live_neighbors == 2 || live_neighbors == 3)){
+						make_alive.push(allCreatures[i]);
+				}
+
+
+		}
+		
+				for(var i3 = 0; i3 < kill.length; i3++) {
+			
+						var img = kill[i3].firstChild;
+						img.src = 'deadone.jpg';
+						kill[i3].status = 'deadeone';
+
+				}
+				
+				for(var i4 = 0; i4 < keep_alive.length; i4++) {
+			
+						keep_alive[i4].firstChild.src = 'liveone.jpg';
+						keep_alive[i4].status = 'liveone';
+
+				}
+				
+				for(var i5 = 0; i5 < make_alive.length; i5++) {
+			
+						make_alive[i5].firstChild.src = 'liveone.jpg';
+						make_alive[i5].status = 'liveone';
+
+				}
+	}
+	
+	
+	
+	
+	
+	
+
+	
+
+    </script>
+	     <meta charset="utf-8">
+        <title>HTML5 : test </title>
+    </head>
+    <body>
+        <h1>Lets play</h1>
+        <button type="button"  onclick="liveOrDie()" >Start</button><br>                  
+		<div id = "mainDiv">
+			<span status = "deadone"   row=1 coll=1><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=1 coll=2><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=1 coll=3><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=1 coll=4><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=1 coll=5><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=1 coll=6><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=1 coll=7><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=1 coll=8><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><br>
+	
+			<span status = "deadone"   row=2 coll=1><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=2 coll=2><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=2 coll=3><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=2 coll=4><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=2 coll=5><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=2 coll=6><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=21 coll=7><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=2 coll=8><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><br>
+			
+			<span status = "deadone"   row=3 coll=1><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=3 coll=2><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=3 coll=3><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=3 coll=4><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=3 coll=5><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=3 coll=6><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=3 coll=7><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=3 coll=8><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><br>
+
+			<span status = "deadone"   row=4 coll=1><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=4 coll=2><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=4 coll=3><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=4 coll=4><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=4 coll=5><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=4 coll=6><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=4 coll=7><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=4 coll=8><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><br>
+
+			
+			<span status = "deadone"   row=5 coll=1><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=5 coll=2><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=5 coll=3><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=5 coll=4><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=5 coll=5><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=5 coll=6><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=5 coll=7><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=5 coll=8><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><br>
+		
+			<span status = "deadone"   row=6 coll=1><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=6 coll=2><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=6 coll=3><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=6 coll=4><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=6 coll=5><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><span status = "deadone"   row=6 coll=6><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span>
+			<span status = "deadone"   row=6 coll=7><img onclick="changeImage(this)"	src="deadone.jpg" width="45"/></span><span status = "deadone"   row=6 coll=8><img onclick="changeImage(this)" src="deadone.jpg" width="45"/></span><br>
+
+			
+		</div>
+    </body>
+</html>
