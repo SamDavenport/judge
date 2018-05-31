@@ -56,13 +56,13 @@
 				}
 			
 			
-				if(thisIsAlive && ( live_neighbors > 3)){
+				if(thisIsAlive && (  live_neighbors < 2 || live_neighbors > 3)){
 						kill.push(allCreatures[i]);
 					
 				}else if(thisIsAlive && (live_neighbors == 2 || live_neighbors == 3)){
 						keep_alive.push(allCreatures[i]);
 					
-				}else if(!thisIsAlive && (live_neighbors == 2 || live_neighbors == 3)){
+				}else if(!thisIsAlive && (live_neighbors == 3)){
 						make_alive.push(allCreatures[i]);
 				}
 
